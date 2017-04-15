@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-http-service
+  labels:
+    name: simple-http-service
+spec:
+  type: "NodePort"
+  ports:
+    # the port that this service should serve on
+  - port: 8080
+    #targetPort: 9376
+    #nodePort: 30061
+  selector:
+    name: simple-http

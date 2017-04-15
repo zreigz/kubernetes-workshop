@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: simple-http
+spec:
+  replicas: 3
+  selector:
+    name: simple-http
+  template:
+    metadata:
+      name: simple-http
+      labels:
+        name: simple-http
+    spec:
+      containers:
+      - name: simple-http-pod
+        image: zreigz/simple-http-pod
+        ports:
+        - containerPort: 8080
