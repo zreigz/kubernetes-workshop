@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web-list
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: web-list
+      labels:
+        name: web-list
+    spec:
+      containers:
+      - name: web-list
+        image: zreigz/web-list
+        ports:
+        - containerPort: 8080

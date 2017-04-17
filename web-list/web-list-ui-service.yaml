@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-list-ui-service
+  labels:
+    name: web-list-ui-service
+spec:
+  type: "NodePort"
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    name: web-list-ui

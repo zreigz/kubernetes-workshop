@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Web-list UI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+		           var url= "http://web-list-service:8080/list";
+                   url_get = 'proxy.php?url='+url;
+                  
+                    $.ajax({
+                        url: url_get,
+                        contentType: "application/json; charset=utf-8",
+         		        dataType: "json",
+                        success: function(data){
+
+                          if(data){
+                                var len = data.length;
+                                var txt = "";
+                                if(len > 0){
+                                    for(var i=0;i<len;i++){
+                                        if(data[i].text){
+                                            txt += "<tr><td>"+data[i].text+"</td></tr>";
+                                        }
+                                    }
+                                    if(txt != ""){
+                                        $("#table").append(txt).removeClass("hidden");
+                                    }
+                                }
+                          }
+                          }
+                    });
+
+                    $("button").click(function() {
+
+                    value = $("#value").val();
+                            updateContact(value);
+                    });
+
+                    function updateContact (value) {
+                         url_post = 'post.php?url='+url+'&value='+value;
+                         jQuery.ajax({
+                         type: "GET",
+                         url:  url_post,
+                         success: function (data, status, jqXHR) {
+                            location.reload();
+                         }
+                     });
+                   }
+
+});
+
+</script>
+<div> <h1>Send new message:</h1></div>
+<input type="text" id="value"/>
+<button>Send</button>
+<table id="table" class="hidden">
+    <tr>
+        <th>Messages</th>
+    </tr>
+</table>
+</body>
+</html>
+
+
+
+

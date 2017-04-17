@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web-list-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: web-list-ui
+      labels:
+        name: web-list-ui
+    spec:
+      containers:
+      - name: web-list-ui
+        image: zreigz/web-list-ui
+        ports:
+        - containerPort: 80
