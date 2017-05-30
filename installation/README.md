@@ -99,4 +99,15 @@ or
 $ kubectl describe node minikube
 ```
 
+## Overview of kubectl
+`kubectl` is a command line interface for running commands against Kubernetes clusters.
 
+### Syntax
+
+Use the following syntax to run `kubectl` commands from your terminal window:
+
+```
+kubectl [command] [TYPE] [NAME] [flags]
+```
+where command, TYPE, NAME, and flags are:
+* command: Specifies the operation that you want to perform on one or more resources, for example create, get, describe, delete.
