@@ -8,14 +8,14 @@ $ sudo apt-add-repository "deb http://download.virtualbox.org/virtualbox/debian 
 Add secure key:
 
 ```
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 ```
 
 Install VirtualBox:
 
 ```
-sudo apt-get update
-sudo apt-get install virtualbox-5.0
+$ sudo apt-get update
+$ sudo apt-get install virtualbox
 ```
 
 When your VirtualBox is ready you can install minikube:
