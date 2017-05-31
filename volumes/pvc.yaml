@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: redis-claim
+  name: nginx-claim
 spec:
   accessModes:
     - ReadWriteOnce
