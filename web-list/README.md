@@ -81,7 +81,7 @@ You can use the API server and get access to your service by service name:
 Minikube uses `https` and this way is unauthorized. There is workaround and `kubectl` can create secure connection (tunnel) between your host and kubernetes API server.
 
 ```
-kubectl proxy --address="0.0.0.0" --port=9090
+kubectl proxy --address="0.0.0.0" --port=9090 --accept-hosts='^*$'
 ```
 Use the following url to get access to service:
 `http://HOST_IP:9090/api/v1/proxy/namespaces/default/services/web-list-ui-service/`
