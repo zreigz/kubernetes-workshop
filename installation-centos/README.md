@@ -149,3 +149,51 @@ for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler flann
 done
 ```
 
+Edit /etc/kubernetes/kubelet to appear as such:
+
+```
+###
+# kubernetes kubelet (minion) config
+
+# The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
+KUBELET_ADDRESS="--address=0.0.0.0"
+
+# The port for the info server to serve on
+# KUBELET_PORT="--port=10250"
+
+# You may leave this blank to use the actual hostname
+KUBELET_HOSTNAME="--hostname-override=127.0.0.1"
+
+# location of the api-server
+KUBELET_API_SERVER="--api-servers=http://127.0.0.1:8080"
+
+# pod infrastructure container
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+
+# Add your own!
+KUBELET_ARGS="--cluster-dns=10.254.254.254 --cluster-domain=cluster.local"
+
+```
+
+Start the appropriate services on node.
+```
+for SERVICES in kube-proxy kubelet flanneld docker; do
+    systemctl restart $SERVICES
+    systemctl enable $SERVICES
+    systemctl status $SERVICES
+done
+```
+
+Configure kubectl
+
+```
+kubectl config set-cluster default-cluster --server=http://127.0.0.1:8080
+kubectl config set-context default-context --cluster=default-cluster --user=default-admin
+kubectl config use-context default-context
+```
+Check to make sure the cluster can see the node (on centos-master)
+```
+$ kubectl get nodes
+NAME                   STATUS     AGE     VERSION
+127.0.0.1              Ready      3d      v1.6.0+fff5156
+```
