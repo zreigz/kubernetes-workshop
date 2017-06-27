@@ -153,3 +153,42 @@ $ kubectl get nodes
 NAME                   STATUS     AGE     VERSION
 127.0.0.1              Ready      3d      v1.6.0+fff5156
 ```
+
+## Overview of kubectl
+`kubectl` is a command line interface for running commands against Kubernetes clusters.
+
+### Syntax
+
+Use the following syntax to run `kubectl` commands from your terminal window:
+
+```
+kubectl [command] [TYPE] [NAME] [flags]
+```
+where command, TYPE, NAME, and flags are:
+* command: Specifies the operation that you want to perform on one or more resources, for example *create*, *get, *describe*, *delete*.
+* TYPE: Specifies the resource type. Resource types are case-sensitive and you can specify the singular, plural, or abbreviated forms.
+* NAME: Specifies the name of the resource. Names are case-sensitive. 
+* flags: Specifies optional flags
+
+### Examples: Common operations
+
+```
+// Create a service using the definition in example-service.yaml.
+$ kubectl create -f example-service.yaml
+
+// List all pods in plain-text output format.
+$ kubectl get pods
+
+// Display the details of the node with name <node-name>.
+$ kubectl describe nodes <node-name>
+
+// Delete a pod using the type and name specified in the pod.yaml file.
+$ kubectl delete -f pod.yaml
+
+// Get an interactive TTY and run /bin/bash from pod <pod-name>. By default, output is from the first container.
+$ kubectl exec -ti <pod-name> /bin/bash
+
+// Return a snapshot of the logs from pod <pod-name>.
+$ kubectl logs <pod-name>
+
+```
