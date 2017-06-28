@@ -34,8 +34,17 @@ systemctl enable docker && systemctl start docker
 systemctl enable kubelet && systemctl start kubelet
 
 ```
+### Initializing your master
+
+The master is the machine where the “control plane” components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
+
+To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
+
+$ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
+
 
 ## 2 Manual installation
+*Skip this when you installed kubernetes in step 1*
 ### Prepare the host
 Create a `/etc/yum.repos.d/virt7-docker-common-release.repo` on host - centos with following information.
 ```
