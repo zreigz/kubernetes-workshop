@@ -39,9 +39,9 @@ systemctl enable kubelet && systemctl start kubelet
 The master is the machine where the “control plane” components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
 
 To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
-
+```
 $ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
-
+```
 
 ## 2 Manual installation
 *Skip this when you installed kubernetes in step 1*
