@@ -1,5 +1,5 @@
 # CentOS
-## 1 Kubeadm
+## 1 Kubeadm (recommended)
 
 ```
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
