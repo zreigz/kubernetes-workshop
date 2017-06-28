@@ -43,6 +43,13 @@ To initialize the master, pick one of the machines you previously installed kube
 $ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
 ```
 
+Check to make sure the cluster can see the node (on centos-master)
+```
+$ kubectl get nodes
+NAME                   STATUS     AGE     VERSION
+127.0.0.1              Ready      3d      v1.6.0+fff5156
+```
+
 ## 2 Manual installation
 *Skip this when you installed kubernetes in step 1*
 ### Prepare the host
