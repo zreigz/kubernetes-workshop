@@ -64,6 +64,38 @@ $ sudo systemctl restart docker
 
 ```
 
+### How do I test if it is working?
+
+Create a simple Pod to use as a test environment
+```
+kubectl create -f busybox.yaml
+```
+
+Wait for this pod to go into the running state
+You can get its status with:
+```
+kubectl get pods busybox
+```
+You should see:
+```
+NAME      READY     STATUS    RESTARTS   AGE
+busybox   1/1       Running   0          <some-time>
+```
+Validate that DNS is working
+Once that pod is running, you can exec nslookup in that environment:
+```
+kubectl exec -ti busybox -- nslookup kubernetes.default
+```
+You should see something like:
+```
+Server:    10.0.0.10
+Address 1: 10.0.0.10
+
+Name:      kubernetes.default
+Address 1: 10.0.0.1
+```
+
+If you see that, DNS is working correctly.
 
 
 ## 2 Manual installation
