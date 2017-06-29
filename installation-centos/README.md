@@ -50,6 +50,22 @@ NAME                   STATUS     AGE     VERSION
 127.0.0.1              Ready      3d      v1.6.0+fff5156
 ```
 
+### Installing a pod network
+
+You must install a pod network add-on so that your pods can communicate with each other.
+```
+kubectl create -f kube-flannel.yaml
+```
+
+Restart kubelet service and docker
+```
+$ sudo systemctl restart kubelet
+$ sudo systemctl restart docker
+
+```
+
+
+
 ## 2 Manual installation
 *Skip this when you installed kubernetes in step 1*
 ### Prepare the host
