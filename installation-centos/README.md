@@ -40,7 +40,7 @@ The master is the machine where the “control plane” components run, includin
 
 To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
 ```
-$ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
+$ kubeadm init --api-advertise-addresses=<ip-address> --pod-network-cidr=10.244.0.0/16
 ```
 
 Check to make sure the cluster can see the node (on centos-master)
