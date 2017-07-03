@@ -54,7 +54,7 @@ NAME                   STATUS     AGE     VERSION
 
 You must install a pod network add-on so that your pods can communicate with each other.
 ```
-kubectl create -f kube-flannel.yaml
+kubectl create -f kube-flannel.yml
 ```
 
 Restart kubelet service and docker
