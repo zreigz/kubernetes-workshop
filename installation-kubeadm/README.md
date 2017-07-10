@@ -33,22 +33,23 @@ The master is the machine where the “control plane” components run, includin
 To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
 
 ```
-$ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
+# kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
+# exit
 ```
 
 When installation is finished:
 
 ```
-  # mkdir -p $HOME/.kube
-  # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  # sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  $ mkdir -p $HOME/.kube
+  $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 ## Master Isolation
 
 By default, your cluster will not schedule pods on the master for security reasons. If you want to be able to schedule pods on the master, e.g. a single-machine Kubernetes cluster for development, run:
 
 ```
-kubectl taint nodes --all node-role.kubernetes.io/master-
+$ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
 ## Installing a pod network
