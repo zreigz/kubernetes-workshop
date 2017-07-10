@@ -24,7 +24,6 @@ EOF
 # apt-get update
 
 # apt-get install -y kubelet kubeadm kubectl kubernetes-cni
-# exit
 
 ```
 ## Initializing your master
@@ -40,9 +39,9 @@ $ kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.
 When installation is finished:
 
 ```
-$ sudo cp /etc/kubernetes/admin.conf $HOME/
-$ sudo chown $(id -u):$(id -g) $HOME/admin.conf
-$ export KUBECONFIG=$HOME/admin.conf
+  # mkdir -p $HOME/.kube
+  # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 ## Master Isolation
 
@@ -84,7 +83,7 @@ $ kubectl describe node minikube
 
 Create a simple Pod to use as a test environment
 ```
-kubectl create -f busybox.yaml
+kubectl create -f https://raw.githubusercontent.com/zreigz/kubernetes-workshop/master/installation-kubeadm/busybox.yaml
 ```
 
 Wait for this pod to go into the running state
@@ -100,7 +99,7 @@ busybox   1/1       Running   0          <some-time>
 Validate that DNS is working
 Once that pod is running, you can exec nslookup in that environment:
 ```
-kubectl exec -ti busybox -- nslookup kubernetes.default
+kubectl exec -ti busybox -- nslookup kubernetes.default.svc.cluster.local
 ```
 You should see something like:
 ```
