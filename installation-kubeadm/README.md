@@ -66,6 +66,7 @@ Restart kubelet service and docker
 ```
 $ sudo systemctl restart kubelet
 $ sudo systemctl restart docker
+$ sudo systemctl restart kubelet
 ```
 Get info about your cluster
 
