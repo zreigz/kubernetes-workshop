@@ -12,7 +12,19 @@ To install Heapster execute the following command:
 ```
 $ kubectl create -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/standalone/heapster-controller.yaml
 ```
+Additionally you can install Dashboard
 
+```
+$ kubectl create -f https://raw.githubusercontent.com/zreigz/kubernetes-workshop/master/hpa/dashboard.yaml
+```
+
+The easiest way to access Dashboard is to use kubectl. Run the following command in your desktop environment:
+
+$ kubectl proxy
+
+kubectl will handle authentication with apiserver and make Dashboard available at http://localhost:8001/ui
+
+The UI can only be accessed from the machine where the command is executed. See kubectl proxy --help for more options.
 
 ## Start pod
 
