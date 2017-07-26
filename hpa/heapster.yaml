@@ -11,7 +11,7 @@ kind: ClusterRoleBinding
 metadata:
   name: heapster
   labels:
-    k8s-app: kubernetes-dashboard
+    k8s-app: heapster
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
