@@ -78,7 +78,7 @@ minikube   Ready     9m        v1.5.2
 or
 
 ```
-$ kubectl describe node minikube
+$ kubectl describe nodes
 ```
 
 ### How do I test if it is working?
