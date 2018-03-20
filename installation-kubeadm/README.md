@@ -70,10 +70,15 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ## Installing a pod network
 
 You must install a pod network add-on so that your pods can communicate with each other.
-
+Set `/proc/sys/net/bridge/bridge-nf-call-iptables` to 1 by running:
 ```
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-rbac.yml
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+$ sudo sysctl net.bridge.bridge-nf-call-iptables=1
+```
+to pass bridged IPv4 traffic to iptables’ chains. This is a requirement for some CNI plugins to work.
+
+Install `flannel` network provider
+```
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
 ```
 
 Restart kubelet service and docker
