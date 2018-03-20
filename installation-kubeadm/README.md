@@ -32,8 +32,18 @@ The master is the machine where the “control plane” components run, includin
 
 To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
 
+Get your ip address
 ```
-# kubeadm init --apiserver-advertise-address=<ip-address> --pod-network-cidr=10.244.0.0/16
+# ip -o -4 addr list $(ip -o -4 route show to default | awk '{print $5}' | head -1) | awk '{print $4}' | cut -d/ -f1 | head -1
+```
+or
+```
+# ifconfig
+```
+and paste it for `kubeadm init` command:
+
+```
+# kubeadm init --apiserver-advertise-address=<your-ip-address> --pod-network-cidr=10.244.0.0/16
 # exit
 ```
 
