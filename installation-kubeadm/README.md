@@ -30,9 +30,14 @@ EOF
 
 The master is the machine where the “control plane” components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
 
-To initialize the master, pick one of the machines you previously installed kubeadm on, and run:
+First disable swap memory:
 
-Get your ip address
+```
+# swapoff -a
+```
+
+To initialize the master, pick one of the machines you previously installed kubeadm on, and get your IP address:
+
 ```
 # ip -o -4 addr list $(ip -o -4 route show to default | awk '{print $5}' | head -1) | awk '{print $4}' | cut -d/ -f1 | head -1
 ```
