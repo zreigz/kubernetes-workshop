@@ -19,9 +19,9 @@ $ kubectl create -f https://raw.githubusercontent.com/zreigz/kubernetes-workshop
 ```
 
 The easiest way to access Dashboard is to use kubectl. Run the following command in your desktop environment:
-
+```
 $ kubectl proxy
-
+```
 kubectl will handle authentication with apiserver and make Dashboard available at http://localhost:8001/ui
 
 The UI can only be accessed from the machine where the command is executed. See kubectl proxy --help for more options.
