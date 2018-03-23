@@ -15,7 +15,7 @@ $ kubectl create -f https://raw.githubusercontent.com/zreigz/kubernetes-workshop
 Additionally you can install Dashboard
 
 ```
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+$ kubectl create -f https://raw.githubusercontent.com/zreigz/kubernetes-workshop/master/hpa/kubernetes-dashboard.yaml
 
 ```
 
