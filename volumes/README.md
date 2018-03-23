@@ -65,7 +65,8 @@ nginx                 10.0.0.226   <nodes>       80:32326/TCP     7s
 Try to call the nginx server:
 
 ```
-$ curl 192.168.99.100:32326
+$ curl <server-ip>:32326
+
 <html>
 <head><title>403 Forbidden</title></head>
 <body bgcolor="white">
@@ -75,25 +76,18 @@ $ curl 192.168.99.100:32326
 </html>
 ```
 
-Now let's ssh to minikube machine and try add some file to /data directory.
-
-```
-$ minikube ssh
-```
-
-You will see minikube console:
+Now let's create some `index.html` file in shared directory.
 
 ```
 $ sudo su
 $ echo "Hello world" > /data/index.html
-$ exit
 $ exit
 ```
 
 Now you can again call nginx server:
 
 ```
-$ curl 192.168.99.100:32326
+$ curl <server-ip>:32326
 Hello world
 ```
 
@@ -236,6 +230,6 @@ The port is 31007
 
 Try call the server:
 ```
-$ curl 192.168.99.100:31007
+$ curl <server-ip>:31007
 Hello world
 ```
