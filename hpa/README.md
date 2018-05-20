@@ -10,21 +10,28 @@ To see all applications deployed to your cluster, run `kubectl get [CONTROLLER]`
 The `kubectl scale` method is the fastest way to scale. However, you may prefer another method in some situations, like when updating configuration files or when performing in-place modifications.
 
 Examples:
-  # Scale a replicaset named 'foo' to 3.
+  ### Scale a replicaset named 'foo' to 3.
+  ```
   kubectl scale --replicas=3 rs/foo
+  ```
 
-  # Scale a resource identified by type and name specified in "foo.yaml" to 3.
+  ### Scale a resource identified by type and name specified in "foo.yaml" to 3.
+  ```
   kubectl scale --replicas=3 -f foo.yaml
-
-  # If the deployment named mysql's current size is 2, scale mysql to 3.
+  ```
+  ### If the deployment named mysql's current size is 2, scale mysql to 3.
+  ```
   kubectl scale --current-replicas=2 --replicas=3 deployment/mysql
-
-  # Scale multiple replication controllers.
+  ``` 
+  ### Scale multiple replication controllers.
+  ```
   kubectl scale --replicas=5 rc/foo rc/bar rc/baz
-
-  # Scale statefulset named 'web' to 3.
+  ```
+  ### Scale statefulset named 'web' to 3.
+  ```
   kubectl scale --replicas=3 statefulset/web
-
+  ```
+  
 # Horizontal Pod Autoscaling
 
 Horizontal Pod Autoscaling automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization
