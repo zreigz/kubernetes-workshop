@@ -246,3 +246,106 @@ Edit `/etc/kubernetes/manifests/kube-controller-manager.yaml` file and add new l
 ...
 
 ```
+Restart Docker and kubelet:
+
+```
+$ sudo systemctl restart docker
+$ sudo systemctl restart kubelet
+```
+
+### Enabling Dynamic Provisioning
+To enable dynamic provisioning, a cluster administrator needs to pre-create one or more StorageClass objects for users. StorageClass objects define which provisioner should be used and what parameters should be passed to that provisioner when dynamic provisioning is invoked. The following manifest creates a storage class:
+```
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-fast
+provisioner: kubernetes.io/host-path
+```
+### Using Dynamic Provisioning
+Users request dynamically provisioned storage by including a storage class in their PersistentVolumeClaim:
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-claim
+spec:
+  storageClassName: local-fast
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+```
+
+The next step is to create a Pod that uses your PersistentVolumeClaim as a volume.
+
+Here is the configuration file for the Pod:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysamplepod
+spec:
+  containers:
+  - name: frontend
+    image: nginx
+    volumeMounts:
+    - mountPath: "/var/www/html"
+      name: myvolume
+  volumes:
+  - name: myvolume
+    persistentVolumeClaim:
+      claimName: nginx-claim
+```
+
+Create those three objects using ond yaml file:
+
+```
+$ kubectl create -f storage-class-example.yaml
+storageclass "local-fast" created
+persistentvolumeclaim "nginx-claim" created
+pod "mysamplepod" created
+
+```
+
+Now check the statuses:
+
+```
+$ kubectl describe sc
+Name:		local-fast
+IsDefaultClass:	No
+Annotations:	<none>
+Provisioner:	kubernetes.io/host-path
+Parameters:	<none>
+Events:		<none>
+
+```
+
+For persistentvolumeclaim:
+
+```
+$ kubectl describe pvc
+Name:		nginx-claim
+Namespace:	default
+StorageClass:	local-fast
+Status:		Bound
+Volume:		pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd
+Labels:		<none>
+Annotations:	pv.kubernetes.io/bind-completed=yes
+		pv.kubernetes.io/bound-by-controller=yes
+		volume.beta.kubernetes.io/storage-provisioner=kubernetes.io/host-path
+Capacity:	3Gi
+Access Modes:	RWO
+Events:
+  FirstSeen	LastSeen	Count	From				SubObjectPath	Type		Reason			Message
+  ---------	--------	-----	----				-------------	--------	------			-------
+  1m		1m		1	persistentvolume-controller			Normal		ProvisioningSucceeded	Successfully provisioned volume pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd using kubernetes.io/host-path
+
+```
+
+Finally for pod:
+
+```
+$ kubectl describe pod 
+```
