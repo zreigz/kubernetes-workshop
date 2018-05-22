@@ -349,3 +349,35 @@ Finally for pod:
 ```
 $ kubectl describe pod 
 ```
+
+Notice the Persistent Volume was also created automatically:
+
+```
+$ kubectl get pv
+NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                 STORAGECLASS   REASON    AGE
+pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd   3Gi        RWO           Delete          Bound     default/nginx-claim   local-fast               12m
+
+```
+The physical space was allocated for volume. 
+```
+$ kubectl describe pv
+Name:		pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd
+Labels:		<none>
+Annotations:	kubernetes.io/createdby=hostpath-dynamic-provisioner
+		pv.kubernetes.io/bound-by-controller=yes
+		pv.kubernetes.io/provisioned-by=kubernetes.io/host-path
+StorageClass:	local-fast
+Status:		Bound
+Claim:		default/nginx-claim
+Reclaim Policy:	Delete
+Access Modes:	RWO
+Capacity:	3Gi
+Message:	
+Source:
+    Type:	HostPath (bare host directory volume)
+    Path:	/tmp/hostpath_pv/593f0bb3-5df5-11e8-ad2d-fc45965540dd
+Events:		<none>
+
+```
+
+The path for mounted volume is: `/tmp/hostpath_pv/593f0bb3-5df5-11e8-ad2d-fc45965540dd`
