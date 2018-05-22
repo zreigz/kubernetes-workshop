@@ -78,7 +78,7 @@ to pass bridged IPv4 traffic to iptables’ chains. This is a requirement for so
 
 Install `flannel` network provider
 ```
-$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
 ```
 
 Restart kubelet service and docker
