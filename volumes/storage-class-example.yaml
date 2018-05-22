@@ -1,0 +1,35 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-fast
+provisioner: kubernetes.io/host-path
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-claim
+spec:
+  storageClassName: local-fast
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysamplepod
+spec:
+  containers:
+  - name: frontend
+    image: nginx
+    volumeMounts:
+    - mountPath: "/var/www/html"
+      name: myvolume
+  volumes:
+  - name: myvolume
+    persistentVolumeClaim:
+      claimName: nginx-claim
