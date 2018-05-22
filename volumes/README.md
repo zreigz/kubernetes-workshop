@@ -233,3 +233,16 @@ Try call the server:
 $ curl <server-ip>:31007
 Hello world
 ```
+## Dynamic Volume Provisioning
+### Prerequisites
+Make sure that the DefaultStorageClass admission controller is enabled on the API server. Add start parments to kube-controller-manager: `--enable-hostpath-provisioner`
+
+Edit `/etc/kubernetes/manifests/kube-controller-manager.yaml` file and add new line in `.spec.containers.command`:
+```
+...
+    - --cluster-cidr=10.244.0.0/16
+    - --enable-hostpath-provisioner
+    - --node-cidr-mask-size=24
+...
+
+```
