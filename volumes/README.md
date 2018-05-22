@@ -299,7 +299,7 @@ spec:
       claimName: nginx-claim
 ```
 
-Create those three objects using ond yaml file:
+Create those three objects using one yaml file:
 
 ```
 $ kubectl create -f storage-class-example.yaml
@@ -344,7 +344,7 @@ Events:
 
 ```
 
-Finally for pod:
+Finally for the pod:
 
 ```
 $ kubectl describe pod 
@@ -358,7 +358,7 @@ NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLIC
 pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd   3Gi        RWO           Delete          Bound     default/nginx-claim   local-fast               12m
 
 ```
-The physical space was allocated for volume. 
+The physical space was allocated for the volume. 
 ```
 $ kubectl describe pv
 Name:		pvc-52c1b3a6-5df5-11e8-95d2-fc45965540dd
@@ -380,4 +380,4 @@ Events:		<none>
 
 ```
 
-The path for mounted volume is: `/tmp/hostpath_pv/593f0bb3-5df5-11e8-ad2d-fc45965540dd`
+The path for the mounted volume is: `/tmp/hostpath_pv/593f0bb3-5df5-11e8-ad2d-fc45965540dd`
