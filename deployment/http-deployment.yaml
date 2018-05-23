@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-http
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: simple-http
+      labels:
+        name: simple-http
+    spec:
+      containers:
+      - name: simple-http-pod
+        image: zreigz/simple-http-pod
+        ports:
+        - containerPort: 8080

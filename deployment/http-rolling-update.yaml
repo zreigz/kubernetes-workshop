@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-http
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: simple-http
+      labels:
+        name: simple-http
+    spec:
+      containers:
+      - name: simple-http-pod
+        image: zreigz/simple-http-pod:development
+        ports:
+        - containerPort: 8080
