@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mariadb-init
+spec:
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+  template:
+    spec:
+      containers:
+      - name: mysql-init
+        image: zreigz/mysql-init
+        env:
+        - name: MYSQL_INIT_HOST
+          value: galera-ss
+        - name: MYSQL_INIT_DATABASE
+          value: mydatabase
+        - name: MYSQL_INIT_USERNAME
+          value: myuser
+        - name: MYSQL_INIT_PASSWORD
+          value: myuserpassword
+      restartPolicy: Never

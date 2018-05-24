@@ -1,0 +1,11 @@
+{% set db = MY_DATABASE | default('mydatabase') %}
+
+CREATE DATABASE IF NOT EXISTS `{{ db }}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `{{ db }}`;
+
+SET foreign_key_checks = 0;
+
+CREATE TABLE IF NOT EXISTS users (id INT, name VARCHAR(256), age INT, gender VARCHAR(3), PRIMARY KEY (id));
+INSERT IGNORE INTO users VALUES (1, 'John Smith', 32, 'm');
+INSERT IGNORE INTO users VALUES (2, 'Lilian Worksmith', 29, 'f');
+INSERT IGNORE INTO users VALUES (3, 'Michael Rupert', 27, 'm');
