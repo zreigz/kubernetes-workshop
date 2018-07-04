@@ -44,7 +44,7 @@ Edit `/etc/kubernetes/manifests/kube-controller-manager.yaml` file and add new l
 ```
 ...
     - --cluster-cidr=10.244.0.0/16
-    - --horizontal-pod-autoscaler-use-rest-clients=true
+    - --horizontal-pod-autoscaler-use-rest-clients=false
     - --node-cidr-mask-size=24
 ...
 ```
