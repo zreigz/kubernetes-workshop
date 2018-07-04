@@ -39,7 +39,7 @@ Horizontal Pod Autoscaling automatically scales the number of pods in a replicat
 ## Prerequisites
 Configure the HPA controller to consume metrics via REST clients and configure the following settings in the `kube-controller-manager.yaml` manifest file:
 
-Edit /etc/kubernetes/manifests/kube-controller-manager.yaml file and add new line in `.spec.containers.command`:
+Edit `/etc/kubernetes/manifests/kube-controller-manager.yaml` file and add new line in `.spec.containers.command`:
 
 ```
 ...
