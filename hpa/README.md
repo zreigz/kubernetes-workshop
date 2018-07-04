@@ -37,8 +37,24 @@ Examples:
 Horizontal Pod Autoscaling automatically scales the number of pods in a replication controller, deployment or replica set based on observed CPU utilization
 
 ## Prerequisites
+Configure the HPA controller to consume metrics via REST clients and configure the following settings in the `kube-controller-manager.yaml` manifest file:
 
-* version 1.2 or later
+Edit /etc/kubernetes/manifests/kube-controller-manager.yaml file and add new line in .spec.containers.command:
+
+...
+    - --cluster-cidr=10.244.0.0/16
+    - --horizontal-pod-autoscaler-use-rest-clients=true
+    - --node-cidr-mask-size=24
+...
+
+Restart Docker and kubelet:
+```
+$ sudo systemctl restart docker
+$ sudo systemctl restart kubelet
+```
+
+### Heapster
+
 * Heapster monitoring
 
 To install Heapster execute the following command:
@@ -46,6 +62,8 @@ To install Heapster execute the following command:
 ```
 $ kubectl create -f heapster.yaml
 ```
+### Dashboard
+
 Additionally you can install Dashboard
 
 ```
@@ -56,7 +74,7 @@ The easiest way to access Dashboard is to use kubectl. Run the following command
 ```
 $ kubectl proxy
 ```
-kubectl will handle authentication with apiserver and make Dashboard available at http://localhost:8001/ui
+kubectl will handle authentication with apiserver and make Dashboard available at http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 
 The UI can only be accessed from the machine where the command is executed. See kubectl proxy --help for more options.
 
