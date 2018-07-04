@@ -23,7 +23,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 # apt-get update
 
-# apt-get install -y kubelet kubeadm kubectl
+# apt-get install -y kubelet=1.10.5-00 kubeadm=1.10.5-00 kubectl=1.10.5-00
 
 ```
 ## Initializing your master
@@ -48,7 +48,7 @@ or
 and paste it for `kubeadm init` command:
 
 ```
-# kubeadm init --apiserver-advertise-address=<your-ip-address> --pod-network-cidr=10.244.0.0/16
+# kubeadm init --apiserver-advertise-address=<your-ip-address> --pod-network-cidr=10.244.0.0/16 --kubernetes-version=stable-1.10
 # exit
 ```
 
