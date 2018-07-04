@@ -39,14 +39,15 @@ Horizontal Pod Autoscaling automatically scales the number of pods in a replicat
 ## Prerequisites
 Configure the HPA controller to consume metrics via REST clients and configure the following settings in the `kube-controller-manager.yaml` manifest file:
 
-Edit /etc/kubernetes/manifests/kube-controller-manager.yaml file and add new line in .spec.containers.command:
+Edit /etc/kubernetes/manifests/kube-controller-manager.yaml file and add new line in `.spec.containers.command`:
 
+```
 ...
     - --cluster-cidr=10.244.0.0/16
     - --horizontal-pod-autoscaler-use-rest-clients=true
     - --node-cidr-mask-size=24
 ...
-
+```
 Restart Docker and kubelet:
 ```
 $ sudo systemctl restart docker
