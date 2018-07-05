@@ -13,3 +13,5 @@ spec:
     #nodePort: 30061
   selector:
     name: simple-http
+  #externalIPs: 
+  #  - 192.168.1.1
